@@ -1,5 +1,5 @@
 // Runs before every build: writes public/sitemap.xml and public/robots.txt.
-// Reads VITE_SITE_URL and VITE_API_URL from the environment (or client/.env). Never fails the build.
+// Reads SITE_URL and API_URL from the environment (or client/.env). Never fails the build.
 import fs from 'fs';
 
 const env = { ...process.env };
@@ -10,13 +10,13 @@ try {
   }
 } catch { /* no .env file */ }
 
-const site = (env.VITE_SITE_URL || '').replace(/\/$/, '');
-const api = (env.VITE_API_URL || '').replace(/\/$/, '');
+const site = (env.SITE_URL || '').replace(/\/$/, '');
+const api = (env.API_URL || '').replace(/\/$/, '');
 fs.mkdirSync('public', { recursive: true });
 
 if (!/^https?:\/\//.test(site)) {
   fs.writeFileSync('public/robots.txt', 'User-agent: *\nDisallow: /admin\n');
-  console.warn('[seo] VITE_SITE_URL is not set, so no sitemap was written. Set it to your live site URL.');
+  console.warn('[seo] SITE_URL is not set, so no sitemap was written. Set it to your live site URL.');
 } else {
   const fixed = ['/', '/services', '/projects', '/floor-plans', '/elevations', '/plot-finder', '/requirement-builder', '/budget-estimator', '/about', '/process', '/pricing', '/faq', '/blog', '/contact', '/request-quote', '/privacy', '/terms'];
   const get = async (k) => {
