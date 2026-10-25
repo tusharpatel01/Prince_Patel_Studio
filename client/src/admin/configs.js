@@ -1,0 +1,35 @@
+const t = (k, label, extra = {}) => ({ k, label, type: 'text', ...extra });
+const pub = [{ k: 'published', label: 'Published (visible on the website)', type: 'checkbox' }, { k: 'order', label: 'Display order (lower comes first)', type: 'number' }];
+const slug = t('slug', 'Slug (web address)', { hint: 'Leave blank to create it from the title.' });
+
+export const configs = {
+  projects: { path: 'projects', title: 'Projects', single: 'project', preview: true, cols: [['title', 'Title'], ['category', 'Category'], ['status', 'Status']],
+    note: 'Only publish projects approved for public display. Mark work as Concept unless it is a genuine completed project.',
+    fields: [t('title', 'Title'), slug,
+      { k: 'category', label: 'Category', type: 'select', options: ['Residential', 'Commercial', 'Interior'] },
+      { k: 'propertyType', label: 'Property type', type: 'select', options: ['', 'Independent house', 'Duplex', 'Villa', 'Commercial building', 'Other'] },
+      { k: 'style', label: 'Style', type: 'select', options: ['', 'Modern', 'Contemporary', 'Traditional', 'Minimalist', 'Other'] },
+      { k: 'plotWidth', label: 'Plot width', type: 'number' }, { k: 'plotLength', label: 'Plot length', type: 'number' },
+      { k: 'unit', label: 'Unit', type: 'select', options: ['ft', 'm'] },
+      { k: 'floors', label: 'Floors', type: 'number' }, { k: 'bedrooms', label: 'Bedrooms', type: 'number' },
+      { k: 'status', label: 'Status', type: 'select', options: ['Concept', 'In Progress', 'Completed'] },
+      { k: 'description', label: 'Description', type: 'textarea' },
+      { k: 'highlights', label: 'Design highlights (one per line)', type: 'lines' }, { k: 'requirements', label: 'Design requirements (one per line)', type: 'lines' }, { k: 'tags', label: 'Tags (one per line)', type: 'lines' },
+      { k: 'images', label: 'Images (2D plans, 3D renders, sketches)', type: 'images' }, ...pub] },
+  services: { path: 'services', title: 'Services', single: 'service', cols: [['title', 'Title'], ['slug', 'Slug']],
+    note: 'Once you publish at least one service, it replaces the built-in sample services.',
+    fields: [t('title', 'Title'), slug, { k: 'art', label: 'Illustration', type: 'select', options: ['plan', 'elevation', 'interior'] }, t('short', 'Short description'), { k: 'desc', label: 'Full description', type: 'textarea' },
+      { k: 'suitable', label: 'Who it suits (one per line)', type: 'lines' }, { k: 'deliverables', label: 'Possible deliverables (one per line)', type: 'lines' }, { k: 'prepare', label: 'What to prepare (one per line)', type: 'lines' },
+      { k: 'faqs', label: 'Service FAQs', type: 'faqs' }, ...pub] },
+  faqs: { path: 'faqs', title: 'FAQs', single: 'FAQ', cols: [['question', 'Question']], fields: [t('question', 'Question'), { k: 'answer', label: 'Answer', type: 'textarea' }, ...pub] },
+  testimonials: { path: 'testimonials', title: 'Testimonials', single: 'testimonial', cols: [['name', 'Name'], ['permission', 'Permission']],
+    note: 'Only add genuine testimonials, and only publish them once you have the person\'s permission.',
+    fields: [t('name', 'Name'), t('role', 'Role or location (optional)'), { k: 'text', label: 'Testimonial', type: 'textarea' }, { k: 'permission', label: 'I have permission to publish this testimonial', type: 'checkbox' }, ...pub] },
+  posts: { path: 'posts', title: 'Blog / Design guides', single: 'guide', cols: [['title', 'Title'], ['slug', 'Slug']],
+    fields: [t('title', 'Title'), slug, { k: 'excerpt', label: 'Short summary', type: 'textarea' }, { k: 'body', label: 'Body', type: 'textarea', hint: 'Separate paragraphs with a blank line. Start a line with "## " for a heading.' }, ...pub] },
+  packages: { path: 'packages', title: 'Pricing packages', single: 'package', cols: [['name', 'Name'], ['quoteOnly', 'Quote only']],
+    note: 'Never enter a price you have not decided. Leave "Request a Quote" ticked until you have.',
+    fields: [t('name', 'Name'), slug, t('summary', 'Summary'), { k: 'quoteOnly', label: 'Show "Request a Quote" instead of a price', type: 'checkbox', def: true }, { k: 'price', label: 'Price', type: 'number' }, t('currency', 'Currency code', { def: 'INR' }),
+      { k: 'deliverables', label: 'Deliverables (one per line)', type: 'lines' }, t('revisions', 'Included revisions'), t('deliveryRange', 'Expected delivery'),
+      { k: 'exclusions', label: 'Exclusions (one per line)', type: 'lines' }, { k: 'addons', label: 'Optional add-ons (one per line: Name | price, price optional)', type: 'addons' }, { k: 'terms', label: 'Applicable terms', type: 'textarea' }, ...pub] },
+};

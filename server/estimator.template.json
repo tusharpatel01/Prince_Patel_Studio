@@ -1,0 +1,16 @@
+{
+  "currency": "INR",
+  "unit": "sqft",
+  "locations": [
+    { "name": "REPLACE WITH A CITY", "rates": { "basic": null, "standard": null, "premium": null } }
+  ],
+  "allowances": [
+    { "key": "finishing", "label": "Finishing allowance", "percent": 0, "includedInRate": true, "optional": false },
+    { "key": "site", "label": "Site development", "percent": 0, "includedInRate": false, "optional": true },
+    { "key": "contingency", "label": "Contingency", "percent": 0, "includedInRate": false, "optional": false }
+  ],
+  "rangeSpreadPercent": 10,
+  "assumptions": ["REPLACE: describe what the rates assume"],
+  "included": ["REPLACE: what the rate covers"],
+  "excluded": ["Architectural design fees", "REPLACE: other exclusions"]
+}

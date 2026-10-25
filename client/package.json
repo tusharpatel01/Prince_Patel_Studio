@@ -1,0 +1,33 @@
+{
+  "name": "prince-patel-studio-client",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "prebuild": "node scripts/generate-seo-files.mjs",
+    "test": "node --test src/lib/estimate.test.js"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "3.9.1",
+    "framer-motion": "11.11.17",
+    "lucide-react": "0.462.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-hook-form": "7.53.2",
+    "react-router-dom": "6.30.6",
+    "zod": "3.25.76"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "4.3.3",
+    "autoprefixer": "10.4.20",
+    "postcss": "8.4.49",
+    "tailwindcss": "3.4.17",
+    "vite": "5.4.21"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
